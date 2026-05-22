@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f1f5f9;
+}
+
+nav + * {
+  margin-top: 1.5rem;
+}
