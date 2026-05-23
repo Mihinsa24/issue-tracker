@@ -1,6 +1,5 @@
 import { create } from "zustand";
 
-// Load persisted authentication state from localStorage.
 const getStoredUser = () => {
   try {
     return JSON.parse(localStorage.getItem("user"));
@@ -17,7 +16,6 @@ const getStoredToken = () => {
   }
 };
 
-// Global auth store for user session and token management.
 const useAuthStore = create((set) => ({
   user: getStoredUser() || null,
   token: getStoredToken() || null,

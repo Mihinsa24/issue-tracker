@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast";
 import VerifyEmail from "./pages/VerifyEmail";
 import CheckEmail from "./pages/CheckEmail";
 
-// Wrapper for routes that require authentication.
+// Protected route wrapper
 const ProtectedRoute = ({ children }) => {
   const { token } = useAuthStore();
   return token ? children : <Navigate to="/login" />;

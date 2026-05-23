@@ -10,8 +10,7 @@ const {
   getIssueCounts,
 } = require("../controllers/issueController");
 
-// Require authentication for every issue management route.
-router.use(protect);
+router.use(protect); // All issue routes require login
 
 router.get("/counts", getIssueCounts);
 router.get("/", getIssues);

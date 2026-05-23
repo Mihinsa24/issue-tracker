@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 
-// Registration page with client-side validation and email verification reminder.
 function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
@@ -15,19 +14,17 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match!");
       setLoading(false);
-      return;
-    }
+        return;
+      }
 
-    if (formData.password.length < 6) {
-      toast.error("Password must be at least 6 characters!");
-      setLoading(false);
-      return;
-    }
-
+      if (formData.password.length < 6) {
+        toast.error("Password must be at least 6 characters!");
+        setLoading(false);
+        return;
+      }
     try {
       await api.post("/auth/register", formData);
       toast.success("Account created!");

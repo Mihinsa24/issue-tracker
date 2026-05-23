@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 
-// Compact issue preview used on dashboard and list pages.
 function IssueCard({ issue }) {
   const navigate = useNavigate();
 

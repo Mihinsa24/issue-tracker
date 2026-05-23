@@ -1,4 +1,3 @@
-// Search and filter controls for issue listing.
 function SearchBar({ search, setSearch, priority, setPriority, status, setStatus }) {
   return (
     <div className="flex flex-wrap gap-3 mb-6">
@@ -32,11 +31,7 @@ function SearchBar({ search, setSearch, priority, setPriority, status, setStatus
       </select>
       {(search || priority || status) && (
         <button
-          onClick={() => {
-            setSearch("");
-            setPriority("");
-            setStatus("");
-          }}
+          onClick={() => { setSearch(""); setPriority(""); setStatus(""); }}
           className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-lg text-sm font-semibold cursor-pointer border-none"
         >
           Clear

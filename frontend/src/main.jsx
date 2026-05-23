@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 
-// Mount the React application and enable client-side routing.
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>

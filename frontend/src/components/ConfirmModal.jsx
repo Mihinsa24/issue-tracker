@@ -1,4 +1,3 @@
-// Reusable confirmation modal used for destructive actions.
 function ConfirmModal({ message, onConfirm, onCancel }) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">

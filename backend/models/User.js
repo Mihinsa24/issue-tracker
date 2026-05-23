@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// User schema includes verification state and token expiry details.
 const userSchema = new mongoose.Schema(
   {
     name: {

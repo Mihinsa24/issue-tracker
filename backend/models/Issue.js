@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 
-// Activity entries capture updates made to an issue over time.
 const activitySchema = new mongoose.Schema({
   message: String,
   by: String,
   at: { type: Date, default: Date.now },
 });
 
-// Main issue schema including status, priority, severity, and creator reference.
 const issueSchema = new mongoose.Schema(
   {
     title: {

@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import api from "../api/axios";
 
-// Verify the email token and show success or failure status.
 function VerifyEmail() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ function VerifyEmail() {
       try {
         await api.get(`/auth/verify-email?token=${token}`);
         setStatus("success");
+        // Auto redirect to login after 3 seconds
         setTimeout(() => navigate("/login"), 3000);
       } catch (err) {
         setStatus("error");

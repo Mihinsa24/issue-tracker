@@ -4,7 +4,6 @@ import useIssueStore from "../store/issueStore";
 import toast from "react-hot-toast";
 import IssueCard from "../components/IssueCard";
 
-// Dashboard page shows summary counts and recent issues.
 function Dashboard() {
   const { counts, fetchCounts, fetchIssues, issues, loading } = useIssueStore();
   const navigate = useNavigate();
@@ -48,6 +47,7 @@ function Dashboard() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* Header */}
       <div className="flex flex-row flex-wrap items-center justify-between gap-3 mb-6">
         <h1 className="text-xl font-bold text-slate-800">Dashboard</h1>
         <div className="flex gap-2">
@@ -66,6 +66,7 @@ function Dashboard() {
         </div>
       </div>
 
+      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {stats.map((stat) => (
           <div key={stat.label} className={`${stat.bg} rounded-xl p-5 text-center`}>
@@ -75,6 +76,7 @@ function Dashboard() {
         ))}
       </div>
 
+      {/* Recent Issues */}
       <h2 className="text-lg font-bold text-slate-800 mb-4">Recent Issues</h2>
       {loading ? (
         <p className="text-slate-400 text-center py-8">Loading...</p>

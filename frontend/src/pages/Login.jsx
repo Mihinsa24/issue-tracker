@@ -4,7 +4,6 @@ import api from "../api/axios";
 import useAuthStore from "../store/authStore";
 import toast from "react-hot-toast";
 
-// Login page handles user authentication and token storage.
 function Login() {
   const navigate = useNavigate();
   const { login } = useAuthStore();
