@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 
+// Page for editing the selected issue fields and status.
 function EditIssue() {
   const { id } = useParams();
   const navigate = useNavigate();

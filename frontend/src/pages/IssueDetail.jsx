@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import StatusBadge from "../components/StatusBadge";
 import ConfirmModal from "../components/ConfirmModal";
 
+// Detailed view for a single issue with actions and activity log.
 function IssueDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -56,7 +57,6 @@ function IssueDetail() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      {/* Confirm Modal */}
       {showModal && (
         <ConfirmModal
           message={
@@ -69,7 +69,6 @@ function IssueDetail() {
         />
       )}
 
-      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <button
           onClick={() => navigate("/issues")}
@@ -109,7 +108,6 @@ function IssueDetail() {
         </div>
       </div>
 
-      {/* Issue Card */}
       <div className="bg-white rounded-2xl shadow-sm p-6 mb-4">
         <h1 className="text-lg font-bold text-slate-800 mb-3">{issue.title}</h1>
         <div className="flex flex-wrap gap-2 mb-4">
@@ -124,7 +122,6 @@ function IssueDetail() {
         </div>
       </div>
 
-      {/* Activity Log */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-lg font-bold text-slate-800 mb-4">Activity Log</h2>
         {issue.activityLog?.length === 0 ? (

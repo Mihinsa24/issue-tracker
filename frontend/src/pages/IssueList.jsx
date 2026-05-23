@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import SearchBar from "../components/SearchBar";
 import StatusBadge from "../components/StatusBadge";
 
+// Issue listing page with filtering, pagination, and export capability.
 function IssueList() {
   const navigate = useNavigate();
   const { issues, loading, totalPages, currentPage, fetchIssues } = useIssueStore();
@@ -58,7 +59,6 @@ function IssueList() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-slate-800">All Issues</h1>
         <div className="flex gap-2 flex-wrap">
@@ -77,7 +77,6 @@ function IssueList() {
         </div>
       </div>
 
-      {/* Filters */}
       <SearchBar
         search={search}
         setSearch={setSearch}
@@ -87,7 +86,6 @@ function IssueList() {
         setStatus={setStatus}
       />
 
-      {/* Issues List */}
       {loading ? (
         <p className="text-center text-slate-400 py-12">Loading issues...</p>
       ) : issues.length === 0 ? (
@@ -102,13 +100,11 @@ function IssueList() {
         </div>
       ) : (
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          {/* Table Header */}
           <div className="hidden md:grid grid-cols-4 px-6 py-3 bg-slate-50 text-sm font-semibold text-slate-500 uppercase tracking-wide">
             <span className="col-span-2">Title</span>
             <span>Status / Priority</span>
             <span>Created</span>
           </div>
-          {/* Rows */}
           {issues.map((issue) => (
             <div
               key={issue._id}
@@ -130,7 +126,6 @@ function IssueList() {
         </div>
       )}
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-6">
           <button

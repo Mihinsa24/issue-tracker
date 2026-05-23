@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { sendVerificationEmail } = require("../utils/emailService");
 
-// Register
+// Register a new user and send a verification email.
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -16,11 +16,10 @@ const register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate verification token
     const verificationToken = crypto.randomBytes(32).toString("hex");
     const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-    const user = await User.create({
+    await User.create({
       name,
       email,
       password: hashedPassword,
@@ -28,10 +27,6 @@ const register = async (req, res) => {
       verificationTokenExpiry,
     });
 
-    console.log("Created user token:", user.verificationToken); // Add this
-    console.log("Token expiry:", user.verificationTokenExpiry); // Add this
-
-    // Send verification email
     await sendVerificationEmail(email, name, verificationToken);
 
     res.status(201).json({
@@ -42,19 +37,15 @@ const register = async (req, res) => {
   }
 };
 
-// Verify Email
+// Confirm the email verification token and activate the user account.
 const verifyEmail = async (req, res) => {
   try {
     const { token } = req.query;
-    
-    console.log("Token received:", token); // Add this
 
     const user = await User.findOne({
       verificationToken: token,
       verificationTokenExpiry: { $gt: new Date() },
     });
-
-    console.log("User found:", user); // Add this
 
     if (!user) {
       return res.status(400).json({ message: "Invalid or expired verification link" });
@@ -67,11 +58,11 @@ const verifyEmail = async (req, res) => {
 
     res.status(200).json({ message: "Email verified successfully! You can now log in." });
   } catch (err) {
-    console.log("Error:", err.message); // Add this
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 
+// Check whether a user has completed email verification.
 const checkVerified = async (req, res) => {
   try {
     const { email } = req.body;
@@ -83,7 +74,7 @@ const checkVerified = async (req, res) => {
   }
 };
 
-// Login
+// Authenticate user credentials and issue a JWT token.
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -93,7 +84,6 @@ const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Check if verified
     if (!user.isVerified) {
       return res.status(401).json({ message: "Please verify your email before logging in" });
     }
