@@ -18,7 +18,7 @@ describe("authController", () => {
     process.env.JWT_SECRET = "test-secret";
   });
 
-  // ─── REGISTER ───────────────────────────────────────────
+  //REGISTER 
 
   it("returns 400 when email is already registered", async () => {
     User.findOne.mockResolvedValue({ email: "existing@test.com" });
@@ -55,7 +55,7 @@ describe("authController", () => {
     });
   });
 
-  // ─── LOGIN ───────────────────────────────────────────────
+  // LOGIN 
 
   it("returns 400 when login email does not exist", async () => {
     User.findOne.mockResolvedValue(null);
