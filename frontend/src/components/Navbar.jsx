@@ -20,7 +20,7 @@ function Navbar() {
       <div className="max-w-7.5xl mx-auto flex flex-wrap items-center justify-between gap-5">
         <div className="flex items-center gap-6">
           <Link to="/" className="text-white font-bold text-xl no-underline">
-            Tracer
+            🐛 Tracer
           </Link>
           <div className="flex gap-2">
             <Link

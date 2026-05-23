@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 function Register() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) =>
@@ -14,10 +14,21 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match!");
+      setLoading(false);
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        toast.error("Password must be at least 6 characters!");
+        setLoading(false);
+        return;
+      }
     try {
       await api.post("/auth/register", formData);
-      toast.success("Account created! Please log in.");
-      navigate("/login");
+      toast.success("Account created!");
+      navigate("/check-email", { state: { email: formData.email } });
     } catch (err) {
       toast.error(err.response?.data?.message || "Registration failed");
     } finally {
@@ -67,6 +78,20 @@ function Register() {
               onChange={handleChange}
               required
               minLength={6}
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="••••••••"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>

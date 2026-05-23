@@ -1,18 +1,42 @@
 import { create } from "zustand";
 
+const getStoredUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch (err) {
+    return null;
+  }
+};
+
+const getStoredToken = () => {
+  try {
+    return localStorage.getItem("token");
+  } catch (err) {
+    return null;
+  }
+};
+
 const useAuthStore = create((set) => ({
-  user: JSON.parse(localStorage.getItem("user")) || null,
-  token: localStorage.getItem("token") || null,
+  user: getStoredUser() || null,
+  token: getStoredToken() || null,
 
   login: (user, token) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    try {
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+    } catch (err) {
+      // ignore storage failures in test or unsupported environments
+    }
     set({ user, token });
   },
 
   logout: () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    try {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+    } catch (err) {
+      // ignore storage failures in test or unsupported environments
+    }
     set({ user: null, token: null });
   },
 }));

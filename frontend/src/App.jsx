@@ -9,6 +9,8 @@ import IssueDetail from "./pages/IssueDetail";
 import CreateIssue from "./pages/CreateIssue";
 import EditIssue from "./pages/EditIssue";
 import { Toaster } from "react-hot-toast";
+import VerifyEmail from "./pages/VerifyEmail";
+import CheckEmail from "./pages/CheckEmail";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -50,6 +52,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/check-email" element={<CheckEmail />} />
         <Route
           path="/issues/new"
           element={

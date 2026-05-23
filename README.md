@@ -1,11 +1,11 @@
-# 🐞 Issue Tracker Web App
+# Issue Tracker Web App
 
 A full-stack Issue Tracking web application built using **React (Frontend)** and **Node.js + Express + MongoDB (Backend)**.  
 It supports full CRUD operations for managing issues.
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Create new issues
 - View all issues
@@ -18,7 +18,7 @@ It supports full CRUD operations for managing issues.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React (Vite)
@@ -35,4 +35,4 @@ It supports full CRUD operations for managing issues.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure

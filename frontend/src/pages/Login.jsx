@@ -22,7 +22,12 @@ function Login() {
       toast.success("Welcome back!");
       navigate("/");
     } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
+      const message = err.response?.data?.message || "Login failed";
+      if (message.includes("verify")) {
+        toast.error("Please verify your email before logging in!", { duration: 5000 });
+      } else {
+        toast.error(message);
+      }
     } finally {
       setLoading(false);
     }
@@ -32,7 +37,7 @@ function Login() {
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-slate-800 mb-1">
-          Tracer
+          🐛 Tracer
         </h2>
         <p className="text-center text-slate-500 mb-6">Sign in to your account</p>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
