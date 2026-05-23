@@ -6,7 +6,7 @@ const { sendVerificationEmail } = require("../utils/emailService");
 router.get("/test-email", async (req, res) => {
   try {
     await sendVerificationEmail(
-      process.env.EMAIL_USER,
+      "mihinsanakandala@gmail.com",
       "Test User",
       "test-token-123"
     );

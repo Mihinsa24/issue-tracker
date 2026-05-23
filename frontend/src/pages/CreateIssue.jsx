@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 
+// Page for creating a new issue with priority and severity selection.
 function CreateIssue() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

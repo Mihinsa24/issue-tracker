@@ -1,3 +1,4 @@
+// Badge component used for status, priority, and severity labels.
 function StatusBadge({ status, priority, severity }) {
   const statusColors = {
     Open: "bg-blue-100 text-blue-700",

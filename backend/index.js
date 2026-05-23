@@ -7,33 +7,32 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://tracer-app.netlify.app"
-  ],
-  credentials: true,
-}));
+// Configure CORS and JSON body parsing for API requests.
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://tracer-app.netlify.app"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
-// Routes
+// Route modules for authentication and issue management.
 const authRoutes = require("./routes/auth");
 const issueRoutes = require("./routes/issues");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/issues", issueRoutes);
 
-// Health check
+// Basic health check endpoint.
 app.get("/", (req, res) => {
   res.send("Issue Tracker API is running!");
 });
 
-// Connect to MongoDB and start server
+// Connect to MongoDB then start the Express server.
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log(" Connected to MongoDB");
+    console.log("Connected to MongoDB");
     app.listen(process.env.PORT, () => {
       console.log(`Server running on port ${process.env.PORT}`);
     });

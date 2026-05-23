@@ -6,7 +6,7 @@ const sendVerificationEmail = async (email, name, token) => {
   const verifyUrl = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
 
   await resend.emails.send({
-    from: "Issue Tracker <onboarding@resend.dev>",
+    from: "Issue Tracker <noreply@tracerapp.online>",
     to: email,
     subject: "Verify your email address",
     html: `

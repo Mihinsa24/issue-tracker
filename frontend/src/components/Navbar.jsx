@@ -2,6 +2,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import toast from "react-hot-toast";
 
+// Application navigation bar shown when the user is authenticated.
 function Navbar() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();

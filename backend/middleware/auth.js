@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// Protect API routes by verifying the JWT token provided in the Authorization header.
 const protect = (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];

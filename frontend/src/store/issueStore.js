@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import api from "../api/axios";
 
+// Store for issue list state, counts, and related API actions.
 const useIssueStore = create((set) => ({
   issues: [],
   total: 0,
