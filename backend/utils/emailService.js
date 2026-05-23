@@ -1,27 +1,12 @@
-const nodemailer = require("nodemailer");
-const dns = require("dns");
+const { Resend } = require("resend");
 
-dns.setDefaultResultOrder("ipv4first");
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  family: 4,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendVerificationEmail = async (email, name, token) => {
   const verifyUrl = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
 
-  await transporter.sendMail({
-    from: `"Issue Tracker" <${process.env.EMAIL_USER}>`,
+  await resend.emails.send({
+    from: "Issue Tracker <onboarding@resend.dev>",
     to: email,
     subject: "Verify your email address",
     html: `
