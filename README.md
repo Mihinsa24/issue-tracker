@@ -19,7 +19,7 @@ A full-stack Issue Tracking application built with **React + Vite** (Frontend) a
 
 ### Authentication
 - User registration and login with email & password
-- Email verification on registration (via Nodemailer)
+- Email verification on registration (via Resend)
 - Secure password hashing with bcrypt
 - JWT-based authentication (7-day expiry)
 - Protected routes — login required to access issues
@@ -31,10 +31,19 @@ A full-stack Issue Tracking application built with **React + Vite** (Frontend) a
 - Toast notifications for all actions
 - Confirmation modals for destructive actions (delete, close, resolve)
 
----
+## Deployment
+
+This application is deployed using the following services:
+
+- **Frontend:** Netlify  
+- **Backend:** Render  
+
+### Note on Backend Availability
+
+The backend service is hosted on Render's free-tier plan. Due to free-tier limitations, the server may enter a sleep state when inactive for a period of time. When this occurs, the initial request may experience a short delay while the server wakes up. Once active, the application functions normally with standard response times.
+
 
 ##  Tech Stack
-
 ## Frontend
 React + Vite - UI framework
 Tailwind CSS - Styling and responsive design
@@ -74,22 +83,23 @@ Create a `.env` file in the `backend` folder:
 
 PORT=8000
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/issuetracker?appName=Cluster0
-EMAIL_USER=yourgmail@gmail.com
-EMAIL_PASS=your_16_char_gmail_app_password
-CLIENT_URL=http://localhost:5173
+LOCAL_CLIENT_URL=http://localhost:5173
+CLIENT_URL=https://tracer-app.netlify.app
+RESEND_API_KEY=re_6MNPqKP6_NNzsVLPpk1FpCrCiHWZ253Gm
+JWT_SECRET=issuetracker_secret_key_2024_xyz789
 
 
- **How to get Gmail App Password:**
- 1. Go to myaccount.google.com → Security
- 2. Enable 2-Step Verification
- 3. Search "App Passwords" → Generate for Mail
- 4. Copy the 16-character password
+**How to get Resend API Key:**
+ 1. Go to [resend.com](https://resend.com) and sign up
+ 2. Go to **API Keys** → click **"Create API Key"**
+ 3. Copy the API key and paste it as `RESEND_API_KEY`
 
 Start the backend:
 
 npm run dev
 
-Server runs on `http://localhost:8000`
+Server runs on Local `http://localhost:8000`
+Server runs on Prod `https://issue-tracker-api-4kd5.onrender.com`
 
 
 ### 3. Frontend Setup & Install Dependencies
@@ -99,14 +109,16 @@ npm install
 
 Create a `.env` file in the `frontend` folder:
 
-VITE_API_URL=http://localhost:8000/api
+VITE_API_URL_LOCAL=http://localhost:8000/api
+VITE_API_URL=https://issue-tracker-api-4kd5.onrender.com/
 
 
 Start the frontend:
 
 npm run dev
 
-App runs on `http://localhost:5173`
+App runs on LOCAL `http://localhost:5173`
+App runs on PROD `https://tracer-app.netlify.app`
 
 
 
