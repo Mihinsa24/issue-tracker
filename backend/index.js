@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://tracer-app.netlify.app/"
+    "https://tracer-app.netlify.app"
   ],
   credentials: true,
 }));
