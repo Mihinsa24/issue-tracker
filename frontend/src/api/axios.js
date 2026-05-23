@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://issue-tracker-api-4kd5.onrender.com/api",
 });
 
 // Automatically attach token to every request
